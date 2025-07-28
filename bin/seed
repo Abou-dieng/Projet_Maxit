@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/config/env.php';
+require_once __DIR__ . '/../seeders/Seeder.php'; // Ajoutez cette ligne
+
+
+
+
+$pdo = null;
+
+if (DB_CONNECTION === 'mysql' || DB_CONNECTION === 'pgsql') {
+    $pdo = new PDO(DSN, DB_USER, DB_PASSWORD);
+} else {
+    echo "Driver non supporté: " . DB_CONNECTION . "\n";
+    exit(1);
+}
+
+// Seed the database
+$seed = new Seeder($pdo);
+$seed->run();

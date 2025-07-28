@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../app/config/env.php';
+
+use App\Core\App;
+use App\Migration\Migration;
+if (DB_CONNECTION === "mysql"){
+    $pdo=new PDO(BASE_DSN_MYSQL,DB_USER,DB_PASSWORD);
+
+
+}
+elseif(DB_CONNECTION==='pgsql'){
+ $pdo=new PDO(BASE_DSN_PGSQL,DB_USER,DB_PASSWORD);
+
+
+}
+
+$migration=new Migration($pdo);
+$migration->run();
+

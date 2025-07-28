@@ -1,0 +1,14 @@
+core:
+      database: App\Core\Database
+      session: App\Core\Session
+
+service:
+      compteService: App\Service\CompteService
+      securityService:   App\Service\SecurityService
+      transactionService: App\Service\TransactionService
+
+repository:
+      compteRepository: App\Repository\CompteRepository
+      transactionRepository:  App\Repository\TransactionRepository
+      userRepository:  App\Repository\UserRepository
+
