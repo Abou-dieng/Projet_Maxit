@@ -1,5 +1,31 @@
 <?php $errors = $errors ?? ''; ?>
-<main class="flex-1 p-6 md:p-8 bg-black overflow-y-auto h-screen">
+<div class="flex min-h-screen bg-black">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-black border-r-2 border-orange-500 flex flex-col py-8 px-4 shadow-orange-500/50">
+    <div class="mb-10 flex items-center gap-2">
+      <span class="bg-orange-500 p-2 rounded-md text-white font-bold text-lg">MAX</span>
+      <span class="text-white font-bold text-xl">ITSA</span>
+    </div>
+    <nav class="flex-1 flex flex-col gap-4">
+      <a href="/client/index" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white hover:bg-orange-500 transition-colors">
+        <i class="fas fa-tachometer-alt"></i> Tableau de bord
+      </a>
+      <a href="/client/transactions" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white hover:bg-orange-500 transition-colors">
+        <i class="fas fa-exchange-alt"></i> Transactions
+      </a>
+      <a href="/client/comptes" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white hover:bg-orange-500 transition-colors">
+        <i class="fas fa-piggy-bank"></i> Comptes
+      </a>
+      <button id="btnWoyofal" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white bg-orange-500 hover:bg-orange-600 transition-colors mt-4">
+        <i class="fas fa-bolt"></i> Paiement Woyofal
+      </button>
+      <a href="/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg text-white hover:bg-red-600 transition-colors mt-auto">
+        <i class="fas fa-sign-out-alt"></i> Déconnexion
+      </a>
+    </nav>
+  </aside>
+
+  <main class="flex-1 p-6 md:p-8 bg-black overflow-y-auto">
             <!-- Notification d'erreur -->
             <?php if ($errors): ?>
             <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-lg shadow-sm">
@@ -8,7 +34,7 @@
                         <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
                     </div>
                     <div class="ml-3">
-<main class="flex-1 p-6 md:p-8 bg-black overflow-y-auto min-h-screen">
+                        <h3 class="text-sm font-medium text-red-800">Oups! Une erreur est survenue</h3>
                         <div class="mt-1 text-sm text-red-700">
                             <p><?= htmlspecialchars($errors) ?></p>
                         </div>
@@ -209,4 +235,25 @@
 
            
         </main>
+        <script type="module" src="/assets/js/paiementWoyofal.js"></script>
+        <!-- Modal Paiement Woyofal (à placer ici pour être accessible partout) -->
+        <div id="modalWoyofal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
+          <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+            <h2 class="text-2xl font-bold text-orange-500 mb-4">Paiement Woyofal</h2>
+            <form id="formWoyofal" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Montant</label>
+                <input type="number" id="montantWoyofal" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required min="100" placeholder="Montant à payer">
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-orange-600 transition-colors" id="textWoyofal">Payer</button>
+                <span id="spinnerWoyofal" class="hidden"><i class="fas fa-spinner fa-spin text-orange-500 text-xl"></i></span>
+              </div>
+              <div id="resultWoyofal" class="mt-2 text-sm"></div>
+            </form>
+            <button id="closeWoyofal" class="mt-6 w-full bg-gray-800 text-white py-2 rounded-lg font-semibold hover:bg-gray-700 transition-colors">Fermer</button>
+          </div>
+        </div>
+  </main>
+</div>
  

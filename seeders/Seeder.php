@@ -24,10 +24,7 @@ class Seeder
 
     private function seedDatabase()
     {
-        $sql = match ($this->driver) {
-            // var_dump($sql);
-            // die();
-           
+        $sql = match ($this->driver) { 
             'mysql' => file_get_contents(__DIR__ . '/../database/insert_mysql.sql'),
             'pgsql' => file_get_contents(__DIR__ . '/../database/insert_postgres.sql'),
             default => throw new Exception("Driver non supporté: " . $this->driver),

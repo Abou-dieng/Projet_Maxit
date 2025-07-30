@@ -18,7 +18,7 @@
     </style>
 </head>
 <body class="bg-black min-h-screen ">
-    <header class="bg-black border-b-2 border-orange-500 px-6 py-4 max-w-5xl mx-auto shadow-orange-500/50">
+    <header class="bg-black border-b-2 border-orange-500 px-6 py-4 w-full mx-auto shadow-orange-500/50">
         <div class="flex items-center justify-between">
 
         <div class="flex items-center space-x-3">
@@ -36,7 +36,6 @@
                     <div class="text-white font-medium">Abzo Dieng</div>
                     <div class="text-orange-500 text-sm font-semibold">785474553</div>
                 </div>
-                <a href="/logout" class="text-white font-semibold hover:text-orange-500 transition-colors">Déconnexion</a>
             </div>
         </div>
     </header>

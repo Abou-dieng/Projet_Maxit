@@ -66,6 +66,11 @@ class ClientController extends AbstractController
     public function showTransactions()
     {
         $user = $this->session->get('user');
+        if (!$user) {
+            // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+            header('Location: /login');
+            exit;
+        }
         $user = User::toObject($user);
         $listComptes = $this->compteService->getComptesByUser($user);
         $comptePrincipal = null;
@@ -73,6 +78,8 @@ class ClientController extends AbstractController
         foreach ($listComptes as $compte) {
             if ($compte->getTypeCompte() && $compte->getTypeCompte()->value === 'Principal') {
                 $comptePrincipal = $compte;
+                var_dump($compte);
+                die();
             } else {
                 $comptesSecondaires[] = $compte;
             }
